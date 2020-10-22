@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT project-record (titulo, subtitulo?, nome, numero, email, workteam?, abstract, deliverables)>
+
+<!ELEMENT titulo (#PCDATA)>
+<!ELEMENT subtitulo (#PCDATA)>
+
+<!ELEMENT nome (#PCDATA)>
+<!ELEMENT numero (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+
+<!ELEMENT membro (nome, email)>
+<!ELEMENT workteam (membro)+>
+
+<!-- paragrafo-->
+<!ELEMENT p EMPTY>
+<!ELEMENT italic (#PCDATA)>
+<!ELEMENT bold (#PCDATA)>
+<!ELEMENT link (#PCDATA)>
+<!ATTLIST link ref CDATA #REQUIRED>
+<!ELEMENT abstract (#PCDATA|bold|italic|link|paragrafo)*>
+
+<!ELEMENT deliverables (link)+>

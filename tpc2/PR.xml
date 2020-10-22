@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project-record>
+    <titulo>
+        TPC2 - PRI
+    </titulo>
+    <subtitulo>
+        Desenvolvimento do ficheiro PR.dtd
+    </subtitulo>
+    <nome>
+        Luís Ferreira
+    </nome>
+    <numero>a76936</numero>
+    <email>a76936@alunos.uminho.pt</email>
+    <workteam>
+        <membro>
+            <nome>Luís Ferreira</nome>
+            <email>a76936@alunos.uminho.pt</email>
+        </membro>
+    </workteam>
+    <abstract>
+        <p/>
+        Desenvolvimento de um DTD que permita <bold>validar</bold> os <italic>Project Records</italic> dos TPC futuros de PRI.
+        <p/>
+        Este documento XML segue o <italic>schema</italic> definido nesse mesmo DTD.
+    </abstract>
+    <deliverables>
+        <link ref="http://www4.di.uminho.pt/~jcr/PROJS/micei2002/guilherme/Project%20Record.htm">
+            Project Record usado como modelo
+        </link>
+    </deliverables>
+</project-record>
