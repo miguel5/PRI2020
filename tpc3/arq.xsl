@@ -75,7 +75,16 @@
                     <title><xsl:value-of select="IDENTI"/></title>
                 </head>
                 <body>
-                    <p><xsl:value-of select="QUADRO"/></p>
+                    <h2><xsl:value-of select="IDENTI"/></h2>
+                    <p><b>Lugar</b>: <xsl:value-of select="LUGAR"/></p>
+                    <p><b>Freguesia</b>: <xsl:value-of select="FREGUE"/></p>
+                    <p><b>Concelho</b>: <xsl:value-of select="CONCEL"/></p>
+                    <p><b>Latitude</b>: <xsl:value-of select="LATITU"/></p>
+                    <p><b>Longitude</b>: <xsl:value-of select="LONGIT"/></p>
+                    <p><b>Altitude</b>: <xsl:value-of select="ALTITU"/></p>
+                    <p><b>Acesso</b>: <xsl:value-of select="ACESSO"/></p>
+                    <p><b>Quadro</b>: <xsl:value-of select="QUADRO"/></p>
+                    <p><b>Descrição</b>: <xsl:value-of select="DESARQ"/></p>
                     <address>[<a href="index.html#i{generate-id()}">Voltar ao índice</a>]</address>
                 </body>
             </html>
