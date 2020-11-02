@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project-record>
+    <titulo>
+        TPC3 - PRI
+    </titulo>
+    <subtitulo>
+        Desenvolvimento de um documento XSL para gerar um site a partir do XML dos arqueosítios
+    </subtitulo>
+    <nome>
+        Luís Ferreira
+    </nome>
+    <numero>a76936</numero>
+    <email>a76936@alunos.uminho.pt</email>
+    <workteam>
+        <membro>
+            <nome>Luís Ferreira</nome>
+            <email>a76936@alunos.uminho.pt</email>
+        </membro>
+    </workteam>
+    <abstract>
+        <p/>
+        Desenvolvimento de uma stylesheet XSL que permita <bold>gerar</bold> código HTML a partir  do documento XML dos arquesítios do NW português. 
+    </abstract>
+    <deliverables>
+        <link ref="http://www4.di.uminho.pt/~jcr/XML/didac/xmldocs/arq.xml">
+        Documento XML dos arquesítios do NW português
+	</link>
+    </deliverables>
+</project-record>
