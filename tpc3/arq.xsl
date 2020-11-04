@@ -22,51 +22,8 @@
         <xsl:apply-templates/>
     </xsl:template>
     
-    <!-- Templates para o índice ............................................-->
-    
-    <xsl:template match="ATOM" mode="indice">
-        <li>
-            <a name="i{generate-id()}"/>
-            <a href="{generate-id()}.html">
-                <xsl:value-of select="SYMBOL"/>
-                -
-                <xsl:value-of select="NAME"/>
-            </a>
-        </li>
-    </xsl:template>
-
-    <xsl:template match="ARQELEM" mode="indice">
-        <li>
-            <a name="i{generate-id()}"/>
-            <a href="{generate-id()}.html">
-                <xsl:value-of select="IDENTI"/>
-            </a>
-        </li>
-    </xsl:template>
     
     <!-- Templates para o conteúdo ............................................-->
-    
-    <xsl:template match="ATOM">
-        <xsl:result-document href="tabsite/{generate-id()}.html">
-            <html>
-                <head>
-                    <title><xsl:value-of select="NAME"/></title>
-                </head>
-                <body>
-                    <p><b>Nome</b>: <xsl:value-of select="NAME"/></p> 
-                    <p><b>Peso atómico</b>: <xsl:value-of select="ATOMIC_WEIGHT"/></p>
-                    <p><b>Número atómico</b>: <xsl:value-of select="ATOMIC_NUMBER"/></p> 
-                    <xsl:if test="HEAT_OF_FUSION">
-                        <p><b>Ponto de fusão</b>: 
-                            <xsl:value-of select="HEAT_OF_FUSION"/> 
-                            <xsl:value-of select="HEAT_OF_FUSION/@UNITS"/>
-                        </p>
-                    </xsl:if>
-                    <address>[<a href="index.html#i{generate-id()}">Voltar ao índice</a>]</address>
-                </body>
-            </html>
-        </xsl:result-document>
-    </xsl:template>
 
     <xsl:template match="ARQELEM">
         <xsl:result-document href="tabsite/{generate-id()}.html">
