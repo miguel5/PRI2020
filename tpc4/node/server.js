@@ -2,7 +2,7 @@ var http = require('http')
 var fs = require('fs')
 
 var servidor = http.createServer(function (req, res){
-    if(req.url.match(/\/arq[0-9]+$ | \/index$/)){
+    if(req.url.match(/\/arq[0-9]+$/)){
         var arq_num = req.url.split('/')[1]
         fs.readFile('/home/miguel/MIEI/4ano/PRI/PRI2020/tpc4/arqweb/' + arq_num + '.html', function(err, data){
             if(err){
