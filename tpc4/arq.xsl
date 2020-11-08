@@ -29,7 +29,7 @@
         <xsl:variable name="count" select="count(preceding::ARQELEM | ancestor::ARQELEM) +1"/>
         <li>
             <a name="i{$count}"/>
-            <a href="arq{$count}.html">
+            <a href="arq{$count}">
                 <xsl:value-of select="IDENTI"/>
             </a>
         </li>
@@ -40,7 +40,7 @@
 
     <xsl:template match="ARQELEM">
         <xsl:variable name="count" select="count(preceding::ARQELEM | ancestor::ARQELEM) +1"/>
-        <xsl:result-document href="arqweb/arq{$count}.html">
+        <xsl:result-document href="arqweb/arq{$count}">
             <html>
                 <head>
                     <title><xsl:value-of select="IDENTI"/></title>
