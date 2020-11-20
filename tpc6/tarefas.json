@@ -1,0 +1,10 @@
+{
+    "tarefas":[
+        {   "id": 1,
+            "descricao":"foo",
+            "responsavel":"bar",
+            "deadline": "10-12-2020",
+            "estado": "concluida"
+        }
+    ]
+}
