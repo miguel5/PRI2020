@@ -190,10 +190,32 @@ function genRegTask(){
     `
 }
 
+// Cancel task
+// Sends DELETE request with the given ID
+function cancelTask(id){
+    
+}
 
+// Pending tasks list HTML Page Template  -----------------------------------------
+function genPendingTaskList(tasks){
+    var list
+    tasks.forEach( t => {
+        list += `
+            <tr>
+                <td>${t.deadline}</td>
+                <td>${t.responsavel}</td>
+                <td>${t.descricao}</td>
+                <td><a href="/">Cancelar</a></td>
+            </tr>
 
-// Task list HTML Page Template  -----------------------------------------
-function genTaskList(tasks){
+        `
+    })
+
+    return list
+}
+
+// Completed/Canceled tasks list HTML Page Template  -----------------------------------------
+function genCCTaskList(tasks){
     var list
     tasks.forEach( t => {
         list += `
@@ -211,7 +233,8 @@ function genTaskList(tasks){
 }
 
 // Main HTML Page Template  -----------------------------------------
-function genMainPag(tasks, d){
+// Takes pending tasks and completed/canceled tasks JSON as input
+function genMainPag(pending_tasks, cc_tasks, d){
     var page = `
     <html>
         <head>
@@ -234,8 +257,18 @@ function genMainPag(tasks, d){
             <div class="w3-container w3-teal">
                 <h3>Pending Tasks</h3>
             </div>
+            <table class="w3-table w3-bordered">
+                <tr>
+                    <th>Deadline</th>
+                    <th>Responsável</th>
+                    <th>Descrição</th>
+                </tr>
+    `
+    page += genPendingTaskList(pending_tasks)
+    page += `
+            </table>
             <div class="w3-container w3-teal">
-                <h3>Completed/Rejected Tasks</h3>
+                <h3>Completed/Canceled Tasks</h3>
             </div>
             <table class="w3-table w3-bordered">
                 <tr>
@@ -245,7 +278,7 @@ function genMainPag(tasks, d){
                     <th>Estado</th>
                 </tr>
     `
-    page += genTaskList(tasks)
+    page += genCCTaskList(cc_tasks)
 
     page += `
             </table>
@@ -274,20 +307,31 @@ var galunoServer = http.createServer(function (req, res) {
     else{
     // Normal request
     switch(req.method){
-        case "GET": 
+        case "GET":
             // GET / --------------------------------------------------------------------
             if(req.url == "/"){
-                axios.get("http://localhost:3000/tarefas?_sort=id")
+                var pendent_tasks
+                axios.get("http://localhost:3000/tarefas?_sort=deadline,responsavel")
                     .then(response => {
-                        var tasks = response.data
-
+                        pendent_tasks = response.data
+                    })
+                    .catch(function(erro){
                         res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
-                        res.write(genMainPag(tasks, d))
+                        res.write("<p>Não foi possível obter a lista de tarefas pendentes...")
+                        res.end()
+                    })
+
+                axios.get("http://localhost:3000/tarefas?_sort=deadline&estado=concluida&estado=cancelada")
+                    .then(response => {
+                        var cc_tasks = response.data
+                        
+                        res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
+                        res.write(genMainPag(pendent_tasks, cc_tasks, d))
                         res.end()
                     })
                     .catch(function(erro){
                         res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
-                        res.write("<p>Não foi possível obter a lista de tarefas...")
+                        res.write("<p>Não foi possível obter a lista de tarefas concluídas/canceladas...")
                         res.end()
                     })
             }
@@ -316,10 +360,10 @@ var galunoServer = http.createServer(function (req, res) {
             }
             break
         case "POST":
-            if(req.url == '/alunos'){
+            if(req.url == '/'){
                 recuperaInfo(req, resultado => {
                     console.log('POST de aluno:' + JSON.stringify(resultado))
-                    axios.post('http://localhost:3000/alunos', resultado)
+                    axios.post('http://localhost:3000/tarefas', resultado)
                         .then(resp => {
                             res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
                             res.write(geraPostConfirm( resp.data, d))
