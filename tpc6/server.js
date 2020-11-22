@@ -205,7 +205,7 @@ function genPendingTaskList(tasks){
                 <td>${t.deadline}</td>
                 <td>${t.responsavel}</td>
                 <td>${t.descricao}</td>
-                <td><a href="/">Cancelar</a></td>
+                <td><a href="/${t.id}">Cancelar</a></td>
             </tr>
 
         `
@@ -294,7 +294,7 @@ function genMainPag(pending_tasks, cc_tasks, d){
 
 // Server setup
 
-var galunoServer = http.createServer(function (req, res) {
+var tarefasServer = http.createServer(function (req, res) {
     // Logger: que pedido chegou e quando
     var d = new Date().toISOString().substr(0, 16)
     console.log(req.method + " " + req.url + " " + d)
@@ -311,7 +311,8 @@ var galunoServer = http.createServer(function (req, res) {
             // GET / --------------------------------------------------------------------
             if(req.url == "/"){
                 var pendent_tasks
-                axios.get("http://localhost:3000/tarefas?_sort=deadline,responsavel")
+                // Get pendent tasks
+                axios.get("http://localhost:3000/tarefas?_sort=deadline,responsavel&estado=pendente")
                     .then(response => {
                         pendent_tasks = response.data
                     })
@@ -320,7 +321,8 @@ var galunoServer = http.createServer(function (req, res) {
                         res.write("<p>Não foi possível obter a lista de tarefas pendentes...")
                         res.end()
                     })
-
+                
+                // Get finished/canceled tasks and generate main page
                 axios.get("http://localhost:3000/tarefas?_sort=deadline&estado=concluida&estado=cancelada")
                     .then(response => {
                         var cc_tasks = response.data
@@ -335,23 +337,42 @@ var galunoServer = http.createServer(function (req, res) {
                         res.end()
                     })
             }
-            // GET /alunos/:id --------------------------------------------------------------------
-            else if(/\/alunos\/(A|PG)[0-9]+$/.test(req.url)){
-                var idAluno = req.url.split("/")[2]
-                axios.get("http://localhost:3000/alunos/" + idAluno)
-                    .then( response => {
-                        let a = response.data
+            // GET /tarefas/:id --------------------------------------------------------------------
+            // Cancel a task given its ID
+            else if(/\/[0-9]+$/.test(req.url)){
+                var idTarefa = req.url.split("/")[1]
+                var tarefa
+
+                axios.get("http://localhost:3000/tarefas/" + idTarefa)
+                    .then(response => {
+                        tarefa = response.data
+                        console.log(JSON.stringify(tarefa))
+                        // Change tarefa 'estado' to 'cancelada'
+                        tarefa["estado"] = "cancelada"
+
+                        axios.put("http://localhost:3000/tarefas/" + idTarefa, tarefa)
+                            .then( response => {
+                                let a = response.data
+                                
+                                res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
+                                res.write(geraPagAluno(a, d))
+                                res.end()
+                            })
+                            .catch(function(erro){
+                                res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
+                                res.write("<p>Não foi possível eliminar a tarefa selecionada...")
+                                res.end()
+                            })
                         
+                    })
+                    .catch(function(erro){
                         res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
-                        res.write(geraPagAluno(a, d))
+                        res.write("<p>Não foi possível obter a lista de tarefas concluídas/canceladas...")
                         res.end()
                     })
-            }
-            // GET /alunos/registo --------------------------------------------------------------------
-            else if(req.url == "/alunos/registo"){
-                res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
-                res.write(geraFormAluno(d))
-                res.end()
+                
+                
+                
             }
             else{
                 res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
@@ -362,7 +383,9 @@ var galunoServer = http.createServer(function (req, res) {
         case "POST":
             if(req.url == '/'){
                 recuperaInfo(req, resultado => {
-                    console.log('POST de aluno:' + JSON.stringify(resultado))
+                    console.log('POST da tarefa:' + JSON.stringify(resultado))
+                    // When creating a new task, make its status 'pendente'
+                    resultado["estado"] = "pendente"
                     axios.post('http://localhost:3000/tarefas', resultado)
                         .then(resp => {
                             res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'})
@@ -392,5 +415,5 @@ var galunoServer = http.createServer(function (req, res) {
     }
 })
 
-galunoServer.listen(7779)
+tarefasServer.listen(7779)
 console.log('Servidor à escuta na porta 7779...')

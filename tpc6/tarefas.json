@@ -2,22 +2,27 @@
   "tarefas": [
     {
       "id": 1,
-      "descricao": "foo",
-      "responsavel": "bar",
-      "deadline": "10-12-2020",
-      "estado": "concluida"
+      "estado": "cancelada"
     },
     {
-      "descricao": "dsad",
-      "responsavel": "asdsa",
-      "deadline": "asdsd",
       "id": 2
     },
     {
-      "descricao": "welelelele",
-      "responsavel": "miguel",
-      "deadline": "11-12-2020",
       "id": 3
+    },
+    {
+      "descricao": "asdas",
+      "responsavel": "asdsad",
+      "deadline": "asdad",
+      "estado": "cancelada",
+      "id": 4
+    },
+    {
+      "descricao": "sadasd",
+      "responsavel": "sadasd",
+      "deadline": "sadsada",
+      "estado": "cancelada",
+      "id": 5
     }
   ]
 }
