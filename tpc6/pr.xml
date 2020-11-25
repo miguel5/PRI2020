@@ -5,8 +5,8 @@
         <key></key>
         <title>TPC5 -PRI</title>
         <subtitle></subtitle>
-        <bdate>9-11-2020</bdate>
-        <edate>16-11-2020</edate>
+        <bdate>16-11-2020</bdate>
+        <edate>23-11-2020</edate>
         <supervisor url="http://www4.di.uminho.pt/~jcr/">José Carlos Ramalho</supervisor>
     </meta>
     <workteam>
@@ -17,10 +17,10 @@
     </workteam>
     <abstract>
         <p>
-            Servidor <b>NodeJS</b> que apresenta a informação de uma escola de música, divida por alunos, cursos e instrumentos.
+            Aplicação <b>NodeJS</b> que recorre a uma API de dados <b>json-server</b> para criar uma <i>Single Page Application</i> para o registo e consulta de tarefas.
         </p>
     </abstract>
     <deliverables>
-        <link url="http://www4.di.uminho.pt/~jcr/">Documento JSON com os dados da escola de música</link>
+        <link url="http://www4.di.uminho.pt/~jcr/"></link>
     </deliverables>
 </pr>

@@ -48,6 +48,13 @@
       "deadline": "10-12-2020",
       "estado": "pendente",
       "id": 10
+    },
+    {
+      "descricao": "O David é gay",
+      "responsavel": "Miguel",
+      "deadline": "10-12-2020",
+      "estado": "cancelada",
+      "id": 11
     }
   ]
 }
