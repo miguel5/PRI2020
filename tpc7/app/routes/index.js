@@ -16,9 +16,14 @@ router.get('/alunos', (req, res) => {
 
 router.post('/registar', (req, res) => {
   Aluno.inserir(req.body)
-    .then(res.send(req.body))
-    .catch(e => res.render('error', {error: e}))
+      .then(res.send(req.body))
+      .catch(e => res.render('error', {error: e}))
 });
 
+router.get('/registar', (req, res) => {
+  Aluno.inserir(req.body)
+      .then(res.render('registo'))
+      .catch(e => res.render('error', {error: e}))
+});
 
 module.exports = router;
