@@ -20,6 +20,13 @@ router.get('/diplomas', function(req, res, next) {
     .catch(e => res.render('error', {error: e}))
 });
 
+router.get('/diploma/:id', function(req, res, next) {
+  var t = localStorage.getItem('myToken')
+  axios.get('https://clav-api.dglab.gov.pt/v2/legislacao/' + req.params.id + '?apikey=' + t)
+    .then(dados => res.render('diplomas', {diplomas: dados.data}))
+    .catch(e => res.render('error', {error: e}))
+});
+
 
 router.get('/classes', function(req, res, next) {
   var t = localStorage.getItem('myToken')
