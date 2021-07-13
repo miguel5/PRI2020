@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  header.w3-container.w3-blue-grey
+    h1 Número do Diploma #{diploma.numero} - Tipo: #{diploma.tipo}
+  .w3-container.w3-padding
+    b Data:
+    span  #{diploma.data}
+    p
+      b Sumário: 
+      span  #{diploma.sumario}
+    p
+      b Estado: 
+      span  #{diploma.estado}
+    if diploma.entidades.length
+      p
+        b Entidades: 
+        ul
+          each e in diploma.entidades
+            li 
+              adress
+                a(href=`http://clav.dglab.gov.pt/entidades/${e.id}`) #{e.id}
+              span  - #{e.sigla}
+
+    
