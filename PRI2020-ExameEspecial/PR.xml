@@ -40,12 +40,6 @@
                     titulo    "Designação para cargos de direção, coordenação e controlo"
                     id    "c250.10.501"</paragrafo>
 
-        <paragrafo>Pergunta 2.1.4</paragrafo>
-        <paragrafo>GET http://clav-api.di.uminho.pt/v2/classes?nivel=4&token=</paragrafo>
-        <paragrafo>pm.test("test 1", function() {console.log(pm.response.json().length)})</paragrafo>
-        <paragrafo>resposta: 6</paragrafo>
-
-
         <paragrafo>Pergunta 2.2</paragrafo>
         <paragrafo>A chave da API fica guradado em localState/myToken</paragrafo>
         <paragrafo>Correr servidor com o npm e abrir em http://localhost:8002/</paragrafo>
