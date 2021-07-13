@@ -10,7 +10,7 @@ if(typeof localStorage === "undefined" || localStorage === null){
 /* GET home page. */
 
 router.get('/', function(req, res) {
-  res.redirect('/classes')
+  res.redirect('/diplomas')
 });
 
 router.get('/diplomas', function(req, res, next) {
