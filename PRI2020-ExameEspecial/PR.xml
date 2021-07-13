@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pr>
+    <meta>
+        <key>PRI2020-teste</key>
+        <title>Teste de PRI</title>
+        <bdate>13 de julho</bdate>
+        <edate>13 de julho</edate>
+        <supervisor>José Carlos Ramalho</supervisor>
+    </meta>
+    <workteam>
+        <worker num="a76936">
+            <name>Luís Ferreira</name>
+            <email>a76936@alunos.uminho.pt</email>
+        </worker>
+    </workteam>
+    <abstract>
+        <paragrafo>Pergunta 1.1</paragrafo>
+        <paragrafo>Foi retirado o campo 'alunos' do JSON para poder importar individualmente cada um dos objetos</paragrafo>
+        <paragrafo>mongoimport -d pri -c avalAlunos --jsonArray aval-alunos-new.json</paragrafo>
+    
+        <paragrafo>Pergunta 2.1.1</paragrafo>
+        <paragrafo>https://clav-api.dglab.gov.pt/v2/legislacao?apikey=...</paragrafo>
+        <paragrafo>Através da indexação automatica de JSON do Firefox</paragrafo>
+        <paragrafo>resposta: 1645</paragrafo>
+        
+        <paragrafo>Pergunta 2.1.3</paragrafo>
+        <paragrafo>GET http://clav-api.di.uminho.pt/v2/classes/c750.30/descendencia?token=</paragrafo>
+        <paragrafo>pm.test("test 1", function() {console.log(pm.response.json().length)})</paragrafo>
+        <paragrafo>resposta: 5</paragrafo>
+
+        <paragrafo>Pergunta 2.1.4</paragrafo>
+        <paragrafo>GET http://clav-api.di.uminho.pt/v2/classes?nivel=4&token=</paragrafo>
+        <paragrafo>pm.test("test 1", function() {console.log(pm.response.json().length)})</paragrafo>
+        <paragrafo>resposta: 6</paragrafo>
+
+
+        <paragrafo>Pergunta 2.2</paragrafo>
+        <paragrafo>Correr servidor com o npm e abrir em http://localhost:8002/</paragrafo>
+
+    </abstract>
+</pr>

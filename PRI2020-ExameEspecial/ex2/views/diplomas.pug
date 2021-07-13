@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  header.w3-container.w3-blue-grey
+    h1 Diplomas
+  .w3-container
+    ul
+      each d in diplomas
+        li
+          adress
+            a(href=`/diploma/${d.id}`) #{d.numero}
+          span  - #{d.tipo} : #{d.sumario}
+        
+    
