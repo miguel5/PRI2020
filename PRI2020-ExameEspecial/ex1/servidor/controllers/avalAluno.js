@@ -38,34 +38,27 @@ module.exports.consultarTpcs = () => {
     .sort('nome')
 }
 
-module.exports.groupByCurso = c => {
+module.exports.groupByCurso = () => {
     return AvalAluno
     .aggregate([
-        {$group: {
-            curso: c,
-            aluno: { $push: { nome: "$nome", idAluno: "$idAluno" } }
-            }}
+        {$group: {_id:"$curso", n: { $sum:1 } } },
+        {$project: { _id: 0, "curso": "$_id", n: "$n" } }, 
     ])
+    .sort('curso')
 }
 
-module.exports.groupByProjeto = c => {
+module.exports.groupByProjeto = () => {
     return AvalAluno
     .aggregate([
-        {$group: {
-            curso: c,
-            aluno: { $push: { nome: "$nome", idAluno: "$idAluno" } }
-            }}
+        {$group: {_id:"$projeto", n: { $sum:1 } } },
+        {$project: { _id: 0, "nota": "$_id", n: "$n" } }, 
     ])
+    .sort('nota')
 }
 
 module.exports.groupByRecurso = c => {
     return AvalAluno
-    .aggregate([
-        {$group: {
-            curso: c,
-            aluno: { $push: { nome: "$nome", idAluno: "$idAluno" } }
-            }}
-    ])
+    .find({exames: {recurso:{$exists:1}}})
 }
 
 

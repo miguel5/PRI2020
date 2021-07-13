@@ -27,6 +27,21 @@ router.get('/diploma/:id', function(req, res, next) {
     .catch(e => res.render('error', {error: e}))
 });
 
+// Numero de diplomas do tipo "despacho"
+router.get('/quantosDespacho', function(req, res, next) {
+  var t = localStorage.getItem('myToken')
+  axios.get('https://clav-api.dglab.gov.pt/v2/legislacao?apikey=' + t)
+    .then(dados => {
+      var quantos = 0
+      for(leg in dados.data){
+        if(leg.tipo == "Despacho")
+          quantos++
+        console.log(leg)
+      }
+      res.status(200).jsonp({quantos: quantos})
+    })
+    .catch(e => res.render('error', {error: e}))
+});
 
 router.get('/classes', function(req, res, next) {
   var t = localStorage.getItem('myToken')

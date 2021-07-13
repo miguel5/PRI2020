@@ -10,7 +10,7 @@ router.get('/alunos', function(req, res) {
       .then(dados => res.status(200).jsonp(dados))
       .catch(e => res.status(500).jsonp({error: e}))
   else
-    if(req.query.groupBy == 'curso')
+    if(req.query.groupBy === 'curso')
       AvalAlunos.groupByCurso(req.query.groupBy)
         .then(dados => res.status(200).jsonp(dados))
         .catch(e => res.status(500).jsonp({error: e}))
